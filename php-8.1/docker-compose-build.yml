@@ -1,0 +1,10 @@
+services:
+  node:
+    build: ./docker/node
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: []
+    command: ["npm","ci"]
