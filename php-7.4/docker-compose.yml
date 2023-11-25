@@ -17,10 +17,8 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-  node:
-    build: ./docker/node
-    depends_on:
-      - php
+  npm:
+    build: ./docker/npm
     environment:
       TZ: Asia/Tokyo
     ports:
@@ -28,6 +26,5 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    init: true
-    tty: true
-    stdin_open: true
+    entrypoint: ["npm"]
+    command: ["-v"]
