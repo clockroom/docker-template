@@ -1,8 +1,6 @@
 FROM php:8.1-fpm-bullseye
 
-RUN apt-get update
-
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
     libmagickwand-dev \
     libonig-dev \
   && pecl install imagick \
@@ -10,16 +8,18 @@ RUN apt-get install -y \
     mbstring \
     pdo_mysql \
   && docker-php-ext-enable \
-    imagick
+    imagick \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /tmp/*
 
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
     imagemagick \
     zip \
   && curl -sS https://getcomposer.org/installer | php -- \
     --install-dir=/usr/local/bin \
-    --filename=composer
-
-RUN apt-get clean \
+    --filename=composer \
+  && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/*
 
