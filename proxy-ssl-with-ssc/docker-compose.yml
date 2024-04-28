@@ -13,8 +13,7 @@ services:
     environment:
       TZ: Asia/Tokyo
     ports:
-      - 8000:80
-      - 8443:443
+      - 443:443
     volumes:
       - .:/app
     working_dir: /app

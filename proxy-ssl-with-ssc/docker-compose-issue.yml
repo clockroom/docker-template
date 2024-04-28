@@ -1,0 +1,6 @@
+services:
+  issue:
+    build: ./docker/issue
+    image: proxy-ssl-with-ssc-issue:latest
+    environment:
+      TZ: Asia/Tokyo
