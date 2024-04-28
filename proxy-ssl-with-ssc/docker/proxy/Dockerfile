@@ -8,8 +8,6 @@ COPY --from=issue /assets/ca.key ./ca.key
 COPY --from=issue /assets/ca.crt ./ca.crt
 COPY ./san.txt ./san.txt
 
-COPY ./san.txt ./bbb.txt
-
 RUN apk --update add openssl \
   && openssl genrsa -out server.key 2048 \
   && openssl req -new -key server.key -subj "/CN=localhost" -out server.csr \
