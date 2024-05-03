@@ -12,7 +12,7 @@
     docker compose up -d
     ```
 
-3. Export the server certificate from the SSL reverse proxy
+3. Export the Root CA certificate from the SSL reverse proxy
     ```sh
     docker compose exec proxy cp /etc/nginx/ssl/ca.crt /app/
     ```
