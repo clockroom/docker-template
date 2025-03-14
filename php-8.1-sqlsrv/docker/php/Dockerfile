@@ -3,10 +3,14 @@ FROM php:8.1-fpm-bullseye
 RUN apt-get update && apt-get install -y \
     libmagickwand-dev \
     libonig-dev \
-  && pecl install imagick \
+    libzip-dev \
+  && pecl install \
+    imagick \
   && docker-php-ext-install \
+    gd \
     mbstring \
     pdo_mysql \
+    zip \
   && docker-php-ext-enable \
     imagick \
   && apt-get clean \
@@ -26,8 +30,10 @@ RUN curl -sS https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/tr
   && apt-get update && ACCEPT_EULA=Y apt-get install -y \
     msodbcsql18 \
     unixodbc-dev \
-  && pecl install pdo_sqlsrv \
-  && docker-php-ext-enable pdo_sqlsrv \
+  && pecl install \
+    pdo_sqlsrv \
+  && docker-php-ext-enable \
+    pdo_sqlsrv \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

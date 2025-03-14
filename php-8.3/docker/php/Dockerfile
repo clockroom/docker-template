@@ -4,7 +4,8 @@ RUN apt-get update && apt-get install -y \
     libmagickwand-dev \
     libonig-dev \
     libzip-dev \
-  && pecl install imagick \
+  && pecl install \
+    imagick \
   && docker-php-ext-install \
     gd \
     mbstring \

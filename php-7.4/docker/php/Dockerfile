@@ -3,10 +3,14 @@ FROM php:7.4-fpm-bullseye
 RUN apt-get update && apt-get install -y \
     libmagickwand-dev \
     libonig-dev \
-  && pecl install imagick \
+    libzip-dev \
+  && pecl install \
+    imagick \
   && docker-php-ext-install \
+    gd \
     mbstring \
     pdo_mysql \
+    zip \
   && docker-php-ext-enable \
     imagick \
   && apt-get clean \
