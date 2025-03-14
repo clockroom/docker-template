@@ -13,7 +13,7 @@ RUN apk --update add openssl \
   && openssl req -new -key server.key -subj "/CN=localhost" -out server.csr \
   && openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -extfile san.txt -days 365 -out server.crt
 
-FROM nginx:1.25-alpine-slim
+FROM nginx:1-alpine-slim
 
 COPY --from=issue /assets/ca.crt /etc/nginx/ssl/ca.crt
 COPY --from=server_issue /work/server.key /etc/nginx/ssl/server.key
