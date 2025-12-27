@@ -6,12 +6,12 @@ WORKDIR /work
 
 COPY --from=issue /assets/ca.key ./ca.key
 COPY --from=issue /assets/ca.crt ./ca.crt
-COPY ./san.txt ./san.txt
+COPY ./server.ext ./server.ext
 
 RUN apk --update add openssl \
   && openssl genrsa -out server.key 2048 \
   && openssl req -new -key server.key -subj "/CN=localhost" -out server.csr \
-  && openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -extfile san.txt -days 365 -out server.crt
+  && openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -extfile server.ext -days 365 -out server.crt
 
 FROM nginx:1-alpine-slim
 
